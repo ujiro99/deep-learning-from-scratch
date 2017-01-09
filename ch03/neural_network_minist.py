@@ -3,8 +3,7 @@ sys.path.append(os.pardir)
 import numpy as np
 import pickle
 from dataset.mnist import load_mnist
-from PIL import Image
-from neural_network import sigmoid, softmax
+from ch03.neural_network import sigmoid, softmax
 
 
 def get_data():
