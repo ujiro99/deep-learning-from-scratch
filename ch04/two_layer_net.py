@@ -1,8 +1,8 @@
+# coding: utf-8
 import sys, os
 sys.path.append(os.pardir)
 from common.functions import *
 from common.gradient import numerical_gradient
-import numpy as np
 
 
 class TwoLayerNet:
