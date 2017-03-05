@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)
+sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
 from common.layers import *
 from common.gradient import numerical_gradient
@@ -9,7 +9,7 @@ from collections import OrderedDict
 
 class TwoLayerNet:
 
-    def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):
+    def __init__(self, input_size, hidden_size, output_size, weight_init_std = 0.01):
         # 重みの初期化
         self.params = {}
         self.params['W1'] = weight_init_std * np.random.randn(input_size, hidden_size)
@@ -28,6 +28,7 @@ class TwoLayerNet:
     def predict(self, x):
         for layer in self.layers.values():
             x = layer.forward(x)
+
         return x
 
     # x:入力データ, t:教師データ
@@ -68,10 +69,10 @@ class TwoLayerNet:
         for layer in layers:
             dout = layer.backward(dout)
 
+        # 設定
         grads = {}
-        grads['W1'] = self.layers['Affine1'].dW
-        grads['b1'] = self.layers['Affine1'].db
-        grads['W2'] = self.layers['Affine2'].dW
-        grads['b2'] = self.layers['Affine2'].db
+        grads['W1'], grads['b1'] = self.layers['Affine1'].dW, self.layers['Affine1'].db
+        grads['W2'], grads['b2'] = self.layers['Affine2'].dW, self.layers['Affine2'].db
 
         return grads
+
